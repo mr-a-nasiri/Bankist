@@ -51,16 +51,13 @@ const stickyNav = function () {
   const nav = document.querySelector('.nav');
   const observer = new IntersectionObserver(
     entries => {
-      // entry is threshold
       const [entry] = entries;
 
       if (!entry.isIntersecting) nav.classList.add('sticky');
       else nav.classList.remove('sticky');
     },
     {
-      // root null is viewport
       root: null,
-      // threshold is percent of observing target in the root
       threshold: 0,
       rootMargin: `${-nav.getBoundingClientRect().height}px`,
     }
@@ -78,19 +75,15 @@ stickyNav();
 const revealSection = function () {
   const observer = new IntersectionObserver(
     entries => {
-      // entry is threshold
       const [entry] = entries;
 
       if (!entry.isIntersecting) return;
 
-      // entry.target is the intersecting element
       entry.target.classList.toggle('section--hidden');
       observer.unobserve(entry.target);
     },
     {
-      // root null is viewport
       root: null,
-      // threshold is percent of observing target in the root
       threshold: 0.2,
     }
   );
@@ -99,3 +92,30 @@ const revealSection = function () {
   sections.forEach(section => observer.observe(section));
 };
 revealSection();
+
+///////////////////////////////////////////////////
+/////----------- Lazy Loading -----------/////
+///////////////////////////////////////////////////
+
+const lazeLoading = function () {
+  const observer = new IntersectionObserver(
+    entries => {
+      const [entry] = entries;
+
+      if (!entry.isIntersecting) return;
+
+      entry.target.src = entry.target.dataset.src;
+
+      entry.target.addEventListener('load', () => entry.target.classList.remove('lazy-img'));
+      observer.unobserve(entry.target);
+    },
+    {
+      root: null,
+      threshold: 0,
+      rootMargin: '200px',
+    }
+  );
+
+  const LazyImages = document.querySelectorAll('.lazy-img');
+  LazyImages.forEach(Image => observer.observe(Image));
+};
