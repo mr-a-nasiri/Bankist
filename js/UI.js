@@ -5,7 +5,11 @@ export class UI {
 
   static smoothScrolling() {
     document.querySelector('.nav__links').addEventListener('click', function (e) {
-      if (!e.target.classList.contains('nav__link')) return;
+      if (
+        !e.target.classList.contains('nav__link') ||
+        e.target.classList.contains('btn--show-modal')
+      )
+        return;
 
       const id = e.target.getAttribute('href');
       const target = document.querySelector(id);
@@ -188,5 +192,10 @@ export class UI {
       goToSlide(curSlide);
       activeDot(curSlide);
     });
+
+    setInterval(function () {
+      nextSlide();
+      activeDot(curSlide);
+    }, 10 * 1000);
   }
 }

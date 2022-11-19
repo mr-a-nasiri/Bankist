@@ -11,7 +11,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/style.css" />
-    <script defer src="js/app.js" type="module"></script>
+    <script src="js/app.js" type="module"></script>
     <title>Bankist | When Banking meets Minimalist</title>
   </head>
   <body>
@@ -303,12 +303,12 @@
       </h2>
       <form class="modal__form">
         <label>First Name</label>
-        <input type="text" />
+        <input type="text" name="firstName" id="firstName" />
         <label>Last Name</label>
-        <input type="text" />
+        <input type="text" name="lastName" id="lastName" />
         <label>Email Address</label>
-        <input type="email" />
-        <button class="btn">Next step &rarr;</button>
+        <input type="email" name="email" id="email" />
+        <button class="btn" type="submit">Next step &rarr;</button>
       </form>
     </div>
     <div class="overlay hidden"></div>
