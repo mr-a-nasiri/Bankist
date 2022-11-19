@@ -7,3 +7,4 @@ UI.tabbedComponent();
 UI.stickyNav();
 UI.revealSection();
 UI.lazeLoading();
+UI.sliderComponent();
